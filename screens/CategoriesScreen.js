@@ -9,12 +9,14 @@ const CategoriesScreen = ({navigation}) => {
   function renderCategorieItem({ item }) {
     
     function pressHandler(){
-      navigation.navigate("MealsOverview");
+      navigation.navigate("MealsOverview",{
+        categoryId:item.id,
+      });//second parem as obj{}
     }
     return <CategoryGridTile title={item.title} color={item.color} onPress={pressHandler}/>;
 
     //return <CategoryGridTile title={item.title} color={item.color} /> ;
-    
+
   }
 
   return (
