@@ -1,20 +1,44 @@
+import { useNavigation } from "@react-navigation/native";
 import { Image, Platform, Pressable, StyleSheet, Text, View } from "react-native";
+import MealDetail from "./MealDetail";
 
-const MealItem = ({title, imageUrl, duration, complexity, affordability}) => {
+const MealItem = ({id,title, imageUrl, duration, complexity, affordability}) => {
+
+    //Another altinative to use the useNavigation hook directely
+    /**
+    this is done incase we dont want to use the props such as {route, navigation}
+    */
+    const navigation = useNavigation();
+    function selectMealItemHandler(){
+        /**
+         * the second param is passed if
+         * we want to sent the props
+         */
+        navigation.navigate("MealDetail", {
+            mealId:id
+        });   
+    }
+    
     return (
-        <View style={styles.mealItem}>
+        <View style={styles.mealItem} >
             <Pressable android_ripple={{color:"#ccc"}} 
-            style={({pressed}) => (pressed ? styles.buttonPressed: null)}>
-                <View style={styles.innerContainer}>
+            style={({pressed}) => (pressed ? styles.buttonPressed: null)}
+            onPress={selectMealItemHandler} >
+                <View style={styles.innerContainer} >
                     <View>
                         <Image source={{uri:imageUrl}} style={styles.image} />
-                        <Text style={styles.title}>{title}</Text>
+                        <Text style={styles.title} >{title}</Text>
                     </View>
-                    <View style={styles.details}>
+                    <MealDetail 
+                        duration={duration} 
+                        complexity={complexity} 
+                        affordability={affordability}
+                    />
+                    {/* <View style={styles.details}>
                         <Text style={styles.detailItem}>{duration} m</Text>
                         <Text style={styles.detailItem}>{complexity.toUpperCase()}</Text>
                         <Text style={styles.detailItem}>{affordability.toUpperCase()}</Text>
-                    </View>
+                    </View> */}
                 </View>
             </Pressable>
             
