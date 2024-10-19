@@ -51,7 +51,7 @@ const styles =StyleSheet.create({
     mealItem:{
         margin:16,
         borderRadius:8,
-        overflow:"hidden",
+       // overflow:"hidden",
         backgroundColor:"white",
         elevation:4,
         // ios style
@@ -62,8 +62,9 @@ const styles =StyleSheet.create({
         shadowOffset:{width:0, height:2},
         overflow: Platform.OS === "android" ? "hidden" : "visible"
     },
-    innerContainer:{borderRadius:16},
-    buttonPressed:{
+    innerContainer:{
+        borderRadius:16},
+        buttonPressed:{
         opacity:0.5,
       },
     image:{
