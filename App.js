@@ -1,14 +1,31 @@
+import { StatusBar } from 'expo-status-bar';
 // import { StatusBar } from 'expo-status-bar';
 import {  Button, StyleSheet, Text, View } from 'react-native';
 import CategoriesScreen from './screens/CategoriesScreen';
-import { StatusBar } from 'expo-status-bar';
 
+import {createDrawerNavigator} from "@react-navigation/drawer"
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import MealsOverviewScreen from './screens/MealsOverviewScreen';
+import FavoriteScreen from './screens/FavoriteScreen';
 import MealDetailScreen from './screens/MaelDetailScreen';
+import MealsOverviewScreen from './screens/MealsOverviewScreen';
 
 const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
+
+function DrawerNavition(){
+  return  <Drawer.Navigator screenOptions={{
+    headerStyle:{backgroundColor:"#383a32"},
+      headerTintColor:"#d7dbdd",
+      //note the sceneContainerin the drawer
+      sceneContainerStyle:{backgroundColor:"#7f8176"},
+    }}>
+      <Drawer.Screen name='Categories' component={CategoriesScreen} options={{
+        title:"All Categoryies"
+      }} />
+      <Drawer.Screen name='Favorites' component={FavoriteScreen} />
+    </Drawer.Navigator>;
+  }
 
 export default function App() {
 
@@ -24,9 +41,10 @@ export default function App() {
           }}
         >
 
-          <Stack.Screen name='MealCategories' component={CategoriesScreen}
+          <Stack.Screen name='MealCategories' component={DrawerNavition}
           options={{
-            title:"Maels Categories",
+            // title:"Maels Categories",
+            headerShown:false,
           }} />
 
           <Stack.Screen name='MealsOverview' component={MealsOverviewScreen} 

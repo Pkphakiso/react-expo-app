@@ -25,7 +25,7 @@ const MealDetailScreen = ({route, navigation})=>{
                 return <IconButton icon="star" color="white" onPress={headeruttonPressHandler} />;
             }
         });
-    },[navigation]);
+    },[navigation,headeruttonPressHandler]);
 
     return (
         <ScrollView style={styles.rootContainer}>
